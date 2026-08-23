@@ -1,0 +1,107 @@
+╔══════════════════════════════════════════════════════════════╗
+║          FUTBOL ANALİZ — Kurulum & Deploy Rehberi            ║
+╚══════════════════════════════════════════════════════════════╝
+
+Sistem: Sofascore verisini çeken Python backend + HTML frontend
+Hosting: Railway.app (ücretsiz, GitHub gerekmez)
+Veri: Otomatik, API anahtarı gerekmez!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ADIM 1 — Railway Hesabı Aç
+────────────────────────────────────
+1. https://railway.app adresine gidin
+2. "Get Started for Free" → e-posta ile kayıt olun
+   (kredi kartı gerekmez, aylık $5 ücretsiz kredi var)
+
+
+ADIM 2 — Projeyi Yükle
+────────────────────────────────────
+Railway'e proje yüklemek için 2 yöntem var:
+
+► YÖNTEM A — Drag & Drop (Kolay):
+  1. Railway dashboard'da "New Project" → "Empty Project" seçin
+  2. Projeye tıklayın → "+ New" → "GitHub Repo" yerine
+     "Empty Service" seçin
+  3. Service'e tıklayın → "Settings" → "Source" bölümünde
+     "Upload" seçeneği ile futbol-analiz klasörünü zip olarak yükleyin
+
+► YÖNTEM B — Railway CLI:
+  1. Terminal'de: npm install -g @railway/cli
+  2. futbol-analiz klasörüne girin
+  3. railway login
+  4. railway up
+
+NOT: Eğer zip yükleme seçeneği göremiyorsanız GitHub daha kolaysa:
+  1. github.com → New Repository → "futbol-analiz" → Create
+  2. Dosyaları sürükle bırak ile yükle
+  3. Railway'de "New Project" → "Deploy from GitHub"
+
+
+ADIM 3 — Ortam Değişkenleri (opsiyonel)
+────────────────────────────────────
+Railway Dashboard → Service → Variables:
+  PORT = 5000  (Railway otomatik ayarlar, genellikle gerekmez)
+
+
+ADIM 4 — Domain Al
+────────────────────────────────────
+Railway Dashboard → Service → Settings → Networking:
+  "Generate Domain" butonuna tıklayın.
+
+  Örnek: https://futbol-analiz-production.up.railway.app
+  Bu URL'i arkadaşlarınızla paylaşın!
+
+
+ADIM 5 — Test Et
+────────────────────────────────────
+Tarayıcıda domain'inizi açın.
+Sol panelde bir takım arayın (örn: "Galatasaray")
+İkinci takımı seçin → "Analiz Et"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YEREL ÇALIŞMA (Test için)
+────────────────────────────────────
+Terminal'de futbol-analiz klasörüne girin:
+
+  pip install -r requirements.txt
+  python app.py
+
+Tarayıcıda: http://localhost:5000
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SİSTEM ÖZELLİKLERİ
+────────────────────────────────────
+✓ Sofascore'dan otomatik veri (API anahtarı gerekmez)
+✓ 5 yıllık tarihsel veri ağırlıklı analiz
+✓ Poisson dağılımı ile ihtimal hesabı
+✓ 1X2 / Üst-Alt 1.5/2.5/3.5/4.5 / KG Var/Yok
+✓ En olası 15+ skor tahmini
+✓ 5x5 skor matrisi
+✓ Ev/Deplasman ayrı istatistikler
+✓ Son 30 maç form analizi
+✓ H2H (karşılıklı geçmiş) analizi
+✓ Değer bahis tespiti (oran girilirse)
+✓ 35+ lig — yaklaşan maçlar
+✓ Canlı skor takibi (60sn yenileme)
+✓ Karanlık/Aydınlık tema
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SORUN GİDERME
+────────────────────────────────────
+"Bağlantı hatası":
+  → Sayfayı Railway URL'den açtığınızdan emin olun
+  → Railway'de Service'in "Active" durumda olduğunu kontrol edin
+
+"Takım bulunamadı":
+  → Takım adını İngilizce deneyin (örn: "Galatasaray" yerine
+    "Galatasaray SK" veya sadece "Galata")
+
+"Analiz boş geliyor":
+  → Sofascore'da bu takımın verisi olmayabilir
+  → Büyük ligler daha iyi sonuç verir
+
+──────────────────────────────────────────────────────────────────
